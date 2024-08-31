@@ -95,4 +95,4 @@
   {#each Array(gridSize * gridSize) as _, index}
     <div class="cell {getCellClass(index)}"></div>
   {/each}
-</div>
+</div>  
