@@ -52,6 +52,14 @@
     if (key === 'ArrowRight' && direction.x === 0) direction = { x: 1, y: 0 };
   };
 
+  const getCellClass = (index) => {
+    const x = index % gridSize;
+    const y = Math.floor(index / gridSize);
+    const isSnake = snake.some(segment => segment.x === x && segment.y === y);
+    const isFood = food.x === x && food.y === y;
+    return isSnake ? 'snake' : isFood ? 'food' : '';
+  };
+
   onMount(() => {
     window.addEventListener('keydown', changeDirection);
     startGame();
@@ -88,13 +96,3 @@
     <div class="cell {getCellClass(index)}"></div>
   {/each}
 </div>
-
-<script>
-  function getCellClass(index) {
-    const x = index % gridSize;
-    const y = Math.floor(index / gridSize);
-    const isSnake = snake.some(segment => segment.x === x && segment.y === y);
-    const isFood = food.x === x && food.y === y;
-    return isSnake ? 'snake' : isFood ? 'food' : '';
-  }
-</script>
